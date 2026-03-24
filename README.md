@@ -1,31 +1,41 @@
-# Time Series Analysis Project – COMP2011 (UQ)  
+# Forecasting Queensland's Unemployment
 
-This repository contains a **Time Series Analysis Project** completed as part of **COMP2011** at the **University of Queensland**, achieving a **High Distinction (90%)**. The project focuses on analysing and forecasting macroeconomic indicators using Python.  
+This project investigates the relationships between **Unemployment, Inflation, and Interest Rates** in Queensland, Australia. It utilizes historical data to develop a predictive model for future unemployment rates, specifically exploring how changes in interest rates might influence economic outcomes.
 
-## Project Overview  
+## Project Overview
+The primary goal of this analysis is to:
+* **Investigate** historical trends and correlations between key economic indicators: Unemployment Rate, Inflation, and Interest Rates.
+* **Forecast** future unemployment rates in Queensland using an **ARIMAX** (AutoRegressive Integrated Moving Average with Explanatory Variables) model.
+* **Simulate Scenarios** to visualize how specific economic shifts—such as a 0.75% decrease in interest rates—might impact unemployment trajectories relative to a baseline.
 
-The goal of this project was to integrate, analyze, and model macroeconomic time series data to understand trends, seasonality, and forecast future values, with a focus on unemployment.  
+## Methodology
 
-Key highlights:  
+### 1. Data Preparation
+The project involves significant data cleaning and preparation using `pandas`:
+* Handling metadata and re-indexing datasets for time-series analysis.
+* Aligning disparate datasets (Unemployment, Inflation, Interest Rates) by date.
+* Identifying and accounting for seasonality inherent in Queensland's unemployment data.
 
-- **Data Integration**  
-  - Combined multi-source macroeconomic data (unemployment, inflation, interest rates) spanning 2011–2024.  
-  - Aligned differing temporal resolutions and constructed a unified time-indexed dataset using `pandas`.  
+### 2. Time-Series Modeling (ARIMAX)
+An **ARIMAX model** is employed to forecast the unemployment rate. Unlike a standard ARIMA model, ARIMAX allows for the inclusion of "Exogenous" (external) variables like interest rates, which helps capture broader economic influences beyond just historical unemployment trends.
 
-- **Exploratory Analysis**  
-  - Conducted visualizations to identify trends, seasonality, volatility, and correlations.  
-  - Insights from EDA informed model selection and forecasting strategy.  
+### 3. Scenario Analysis & Visualization
+The model compares different future paths:
+* **Baseline Forecast:** Predicting unemployment based on current trends and seasonality.
+* **Intervention Scenario:** Forecasting the impact of a specific change, such as a **0.75% reduction in the interest rate**.
+* **Visual Output:** The project generates a plot showing ARIMAX forecasts with 95% Confidence Intervals, allowing for a clear visual comparison between the baseline and the intervention scenario.
 
-- **Time Series Decomposition**  
-  - Manually implemented Seasonal–Trend–Remainder (STR) decomposition on unemployment data.  
-  - Validated manual decomposition against automated methods and interpreted labour market dynamics.  
+## Key Findings
+* **Seasonality:** Unemployment data in Queensland exhibits a strong, predictable seasonal pattern.
+* **Interest Rate Impact:** The analysis suggests that decreasing the interest rate by 0.75% would result in a slightly higher increase and a more consistent "hold" of that increased unemployment rate compared to the baseline seasonal pattern.
 
-- **Forecasting Models**  
-  - **ARIMA**: Modeled the trend-cycle component and generated probabilistic unemployment forecasts, including uncertainty quantification.  
-  - **Neural Networks**: Developed pure forecasters for trend prediction.  
-  - **Multivariate Models**: Incorporated exogenous interest rate scenarios to assess counterfactual policy impacts on future unemployment.  
+## Requirements
+To run the notebook, you will need the following Python libraries:
+* `pandas`
+* `statsmodels` (for ARIMAX modeling)
+* `matplotlib` (for visualization)
+* `datetime`
 
-## Technologies Used  
-
-- Python (`pandas`, `numpy`, `matplotlib`, `statsmodels`, `scikit-learn`, `tensorflow/keras`)  
-- Jupyter Notebooks for analysis and visualization
+You can install the necessary dependencies using:
+```bash
+pip install pandas statsmodels matplotlib
